@@ -25,6 +25,7 @@ public class Rifle : MonoBehaviour
     [Header("Rifile Effects")]
     public ParticleSystem muzzleSpark;
     public GameObject WoodedEffect;
+    public GameObject goreEffect;
 
 
     private void Awake() {
@@ -60,7 +61,7 @@ public class Rifle : MonoBehaviour
         }else{
             animator.SetBool("Fire",false);
             animator.SetBool("Idle",true);
-            animator.SetBool("FireWalk",true);
+            animator.SetBool("FireWalk",false);//True
         }
     }
 
@@ -82,11 +83,16 @@ public class Rifle : MonoBehaviour
             Debug.Log(hitInfo.transform.name);
 
             ObjectToHit objectToHit=hitInfo.transform.GetComponent<ObjectToHit>();
+            Zombie1 zombie1=hitInfo.transform.GetComponent<Zombie1>();
 
             if(objectToHit!=null){
                 objectToHit.ObjectHitDamage(giveDamageOf);
                 GameObject woodGo=Instantiate(WoodedEffect,hitInfo.point,Quaternion.LookRotation(hitInfo.normal));
                 Destroy(woodGo,1f);
+            }else if(zombie1!=null){
+                zombie1.zombieHitDamage(giveDamageOf);
+                GameObject goreEffectGo=Instantiate(goreEffect,hitInfo.point,Quaternion.LookRotation(hitInfo.normal));
+                Destroy(goreEffectGo,1f);
             }
         }
     }
