@@ -1,4 +1,4 @@
-# Zombie FPS Game
+# Zombie TPS Game
 
 ## Description
 
