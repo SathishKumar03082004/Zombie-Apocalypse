@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     [Header("Player Health")]
     private float playerHealth=100f;
     public float presnetHealth;
+    public GameObject playerDamage;
 
     [Header("Player Script Cameras")]
     public Transform playerCamera;
@@ -117,6 +118,7 @@ public class PlayerScript : MonoBehaviour
 
     public void playerHitDamage(float takeDamage){
         presnetHealth-=takeDamage;
+        StartCoroutine(PlayerDamage());
 
         if(presnetHealth<=0){
             PlayerDie();
@@ -126,6 +128,12 @@ public class PlayerScript : MonoBehaviour
     private void PlayerDie(){
         Cursor.lockState=CursorLockMode.None;
         Object.Destroy(gameObject, 1.0f);
+    }
+
+    IEnumerator PlayerDamage(){
+        playerDamage.SetActive(true);
+        yield return new WaitForSeconds(1.8f);
+        playerDamage.SetActive(false);
     }
 
 }

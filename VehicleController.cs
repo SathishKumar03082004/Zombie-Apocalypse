@@ -45,6 +45,14 @@ public class VehicleController : MonoBehaviour
     public GameObject PlayerCharacter;
 
 
+    [Header("Vehicle Hit")]
+    public Camera cam;
+    public float hitRange=2f;
+    private float giveDamageOf = 100f;
+    //public ParticleSystem hitSpark;
+    public GameObject goreEffect;
+
+
     private void Update() {
 
         if(Vector3.Distance(transform.position, player.transform.position) < radius){
@@ -73,6 +81,7 @@ public class VehicleController : MonoBehaviour
             MoveVehicle();
             VehicleSteering();
             ApplyBreaks();
+            HitZombies();
         }
         else if(isOpened == false){
             ThirdPersonCam.SetActive(true);
@@ -135,5 +144,30 @@ public class VehicleController : MonoBehaviour
         frontLeftWheelCollider.brakeTorque = presentBreakingForce;
         backRightWheelCollider.brakeTorque = presentBreakingForce;
         backLeftWheelCollider.brakeTorque = presentBreakingForce;
+    }
+
+    void HitZombies(){
+
+        RaycastHit hitInfo;
+
+        if(Physics.Raycast(cam.transform.position,cam.transform.forward,out hitInfo,hitRange)){
+            Debug.Log(hitInfo.transform.name);
+
+            Zombie1 zombie1=hitInfo.transform.GetComponent<Zombie1>();
+            Zombie2 zombie2=hitInfo.transform.GetComponent<Zombie2>();
+
+            if(zombie1!=null){
+                zombie1.zombieHitDamage(giveDamageOf);
+                zombie1.GetComponent<CapsuleCollider>().enabled=false;
+                GameObject goreEffectGo=Instantiate(goreEffect,hitInfo.point,Quaternion.LookRotation(hitInfo.normal));
+                Destroy(goreEffectGo,1f);
+            }
+            else if(zombie2!=null){
+                zombie2.zombieHitDamage(giveDamageOf);
+                zombie2.GetComponent<CapsuleCollider>().enabled=false;
+                GameObject goreEffectGo=Instantiate(goreEffect,hitInfo.point,Quaternion.LookRotation(hitInfo.normal));
+                Destroy(goreEffectGo,1f);
+            }
+        }
     }
 }
