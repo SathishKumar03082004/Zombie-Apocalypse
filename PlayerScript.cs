@@ -132,7 +132,7 @@ public class PlayerScript : MonoBehaviour
 
     IEnumerator PlayerDamage(){
         playerDamage.SetActive(true);
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(1.2f);
         playerDamage.SetActive(false);
     }
 
