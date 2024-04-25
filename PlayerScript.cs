@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class PlayerScript : MonoBehaviour
     bool onSurface;
     public float surfaceDistance=0.4f;
     public LayerMask surfaceMask;
+    public Text healthText;
 
     private void Start() {
         Cursor.lockState=CursorLockMode.Locked;
@@ -48,6 +50,12 @@ public class PlayerScript : MonoBehaviour
         playerMove();
         Jump();
         Sprint();
+        UpdateHealthText();
+    }
+
+
+    void UpdateHealthText() {
+            healthText.text = presnetHealth.ToString();
     }
 
     void playerMove(){

@@ -8,6 +8,8 @@ public class AmmoCount : MonoBehaviour
     public Text ammunitionText;
     public Text magText;
 
+    public Text playerhealth;
+
     public static AmmoCount occurrence;
 
 
@@ -21,5 +23,10 @@ public class AmmoCount : MonoBehaviour
 
     public void UpdateMagText(int mag){
         magText.text = "Magazines. "+mag;
+    }
+
+
+    public void UpdateHealthText(float health){
+        playerhealth.text = "Magazines. "+health;
     }
 }
