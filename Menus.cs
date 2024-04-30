@@ -25,7 +25,7 @@ public class Menus : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         }
-        else if(Input.GetKeyDown("m")){
+        else if(Input.GetKeyDown("o")){
             if(GameIsStopped){
                 removeObjectives();
                 Cursor.lockState = CursorLockMode.Locked;
@@ -60,11 +60,11 @@ public class Menus : MonoBehaviour
 
 
     public void Restart(){
-
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void LoadMenu(){
-
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame(){

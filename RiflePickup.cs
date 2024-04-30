@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RiflePickup : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class RiflePickup : MonoBehaviour
             if(Input.GetKeyDown("f")){
                 PlayerRifle.SetActive(true);
                 PickUpRifie.SetActive(false);
+                //ObjectivesComplete.occurrence.GetObjectiveDone(true,false,false,false);
+                ObjectivesComplete.occurrence.GetObjectiveDone(true, false, false, false);
             }
         }
     }

@@ -30,6 +30,10 @@ public class Rifle : MonoBehaviour
     public GameObject goreEffect;
 
 
+    [Header("Sound and UI")]
+    public GameObject AmmoOutUI;
+
+
     private void Awake() {
         transform.SetParent(hand);
         rifleUI.SetActive(true);
@@ -70,6 +74,7 @@ public class Rifle : MonoBehaviour
 
     private void Shoot(){
         if(mag==0){
+            StartCoroutine(showAmmoOut());
             return;
         }
 
@@ -123,5 +128,12 @@ public class Rifle : MonoBehaviour
         player.playerSpeed=1.9f;
         player.playerSprint=3;
         setReloading=false;
+    }
+
+
+    IEnumerator showAmmoOut(){
+        AmmoOutUI.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        AmmoOutUI.SetActive(false);
     }
 }
