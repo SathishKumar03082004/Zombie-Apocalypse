@@ -19,7 +19,7 @@ public class HealthBoost : MonoBehaviour
 
     private void Update() {
         if(Vector3.Distance(transform.position, player.transform.position)<radius){
-            if(Input.GetKeyDown("f")){
+            if(Input.GetKeyDown("h")){
                 animator.SetBool("Open",true);
                 player.presnetHealth = healthToGive;
 

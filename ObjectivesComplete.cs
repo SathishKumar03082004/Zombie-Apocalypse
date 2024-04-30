@@ -10,6 +10,7 @@ public class ObjectivesComplete : MonoBehaviour
     public Text objective2;
     public Text objective3;
     public Text objective4;
+    public Text objective5;
 
 
     public static ObjectivesComplete occurrence;
@@ -20,7 +21,7 @@ public class ObjectivesComplete : MonoBehaviour
     }
 
 
-    public void GetObjectiveDone(bool obj1,bool obj2,bool obj3,bool obj4){
+    public void GetObjectiveDone(bool obj1,bool obj2,bool obj3,bool obj4,bool obj5){
         if(obj1 == true){
             objective1.text = "01. Completed";
             objective1.color = Color.green;
@@ -59,6 +60,16 @@ public class ObjectivesComplete : MonoBehaviour
         else{
             objective4.text = "04. get all the villagers into villagers";
             objective4.color = Color.white;
+        }
+        
+
+        if(obj5 == true){
+            objective5.text = "05. Completed";
+            objective5.color = Color.green;
+        }
+        else{
+            objective5.text = "05. Goto The Drop Zone";
+            objective5.color = Color.white;
         }
     }
 }

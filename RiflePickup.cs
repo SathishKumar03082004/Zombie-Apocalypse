@@ -41,7 +41,7 @@ public class RiflePickup : MonoBehaviour
                 PlayerRifle.SetActive(true);
                 PickUpRifie.SetActive(false);
                 //ObjectivesComplete.occurrence.GetObjectiveDone(true,false,false,false);
-                ObjectivesComplete.occurrence.GetObjectiveDone(true, false, false, false);
+                ObjectivesComplete.occurrence.GetObjectiveDone(true, false, false, false,false);
             }
         }
     }

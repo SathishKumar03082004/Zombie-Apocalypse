@@ -7,7 +7,7 @@ public class objective2 : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player"){
 
-            ObjectivesComplete.occurrence.GetObjectiveDone(true,true,false,false);
+            ObjectivesComplete.occurrence.GetObjectiveDone(true,true,false,false,false);
 
             Destroy(gameObject ,2f);
         }
