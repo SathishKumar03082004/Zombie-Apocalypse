@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VehicleController : MonoBehaviour
 {
@@ -54,6 +55,10 @@ public class VehicleController : MonoBehaviour
     public GameObject DestroyEffect;
 
 
+    [Header("Objective")]
+    public Text objective3;
+
+
     private void Update() {
 
         if(Vector3.Distance(transform.position, player.transform.position) < radius){
@@ -61,7 +66,7 @@ public class VehicleController : MonoBehaviour
                 isOpened = true;
                 radius = 5000f;
 
-                ObjectivesComplete.occurrence.GetObjectiveDone(true,true,true,false,false);
+                GetObjectiveDone(true);
 
             }
             else if(Input.GetKey(KeyCode.G)){
@@ -176,6 +181,18 @@ public class VehicleController : MonoBehaviour
                 GameObject woodGo=Instantiate(DestroyEffect,hitInfo.point,Quaternion.LookRotation(hitInfo.normal));
                 Destroy(woodGo,1f);
             }
+        }
+    }
+
+
+    public void GetObjectiveDone(bool obj3){
+        if(obj3 == true){
+            objective3.text = "03. Completed";
+            objective3.color = Color.green;
+        }
+        else{
+            objective3.text = "03. Find vehicle";
+            objective3.color = Color.white;
         }
     }
 }

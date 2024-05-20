@@ -19,6 +19,10 @@ public class RiflePickup : MonoBehaviour
     private float nextTimeToPunch=0f;
     public float punchCharge=15f;
 
+
+    [Header("Objective")]
+    public Text objective1;
+
     private void Awake() {
         PlayerRifle.SetActive(false);
         rifleUI.SetActive(false);
@@ -41,8 +45,19 @@ public class RiflePickup : MonoBehaviour
                 PlayerRifle.SetActive(true);
                 PickUpRifie.SetActive(false);
                 //ObjectivesComplete.occurrence.GetObjectiveDone(true,false,false,false);
-                ObjectivesComplete.occurrence.GetObjectiveDone(true, false, false, false,false);
+                GetObjectiveDone(true);
             }
+        }
+    }
+
+    public void GetObjectiveDone(bool obj1){
+        if(obj1 == true){
+            objective1.text = "01. Completed";
+            objective1.color = Color.green;
+        }
+        else{
+            objective1.text = "01. Find The Rifle";
+            objective1.color = Color.white;
         }
     }
 }
