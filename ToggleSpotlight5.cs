@@ -15,23 +15,25 @@ public class ToggleSpotlight4 : MonoBehaviour
     {
         while (true)
         {
+            //45
+            //101101
             spotlight.enabled = true;
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(2f);
 
             spotlight.enabled = false;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
 
             spotlight.enabled = true;
-            yield return new WaitForSeconds(3f);
-
-            spotlight.enabled = false;
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(2f);
 
             spotlight.enabled = true;
-            yield return new WaitForSeconds(8f);
+            yield return new WaitForSeconds(2f);
 
             spotlight.enabled = false;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
+
+            spotlight.enabled = true;
+            yield return new WaitForSeconds(2f);
         }
     }
 }

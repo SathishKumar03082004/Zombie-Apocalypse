@@ -15,7 +15,6 @@ public class ToggleSpotlight2 : MonoBehaviour
     {
         while (true)
         {
-            //45
             spotlight.enabled = true;
             yield return new WaitForSeconds(1f);
 
