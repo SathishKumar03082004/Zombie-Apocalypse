@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ToggleSpotlight4 : MonoBehaviour
+public class ToggleSpotlight5 : MonoBehaviour
 {
     private Light spotlight;
 
