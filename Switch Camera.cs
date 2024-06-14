@@ -14,57 +14,58 @@ public class SwitchCamera : MonoBehaviour
     public Animator animator;
 
     [Header("Player Reference")]
-    public Transform playerTransform;
+    public Transform playerTransform; // Reference to the player object to update its rotation
 
     private void Update(){
         bool isAiming = Input.GetButton("Fire2");
 
         if (isAiming && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))){
-
-            animator.SetBool("Idle", false);
-            animator.SetBool("IdleAim", true);
-            animator.SetBool("RifleWalk", true);
-            animator.SetBool("Walk", true);
-
-            ThirdPersonCam.SetActive(false);
-            ThirdPersonCanvas.SetActive(false);
-            AimCam.SetActive(true);
-            AimCanvas.SetActive(true);
+            SetAnimatorState(idle: false, idleAim: true, rifleWalk: true, walk: true);
+            SwitchToAimCamera();
         }
         else if (isAiming){
-
-            animator.SetBool("Idle", false);
-            animator.SetBool("IdleAim", true);
-            animator.SetBool("RifleWalk", false);
-            animator.SetBool("Walk", false);
-
-            ThirdPersonCam.SetActive(false);
-            ThirdPersonCanvas.SetActive(false);
-            AimCam.SetActive(true);
-            AimCanvas.SetActive(true);
+            SetAnimatorState(idle: false, idleAim: true, rifleWalk: false, walk: false);
+            SwitchToAimCamera();
         }
         else{
-            animator.SetBool("Idle", true);
-            animator.SetBool("IdleAim", false);
-            animator.SetBool("RifleWalk", false);
-
-            ThirdPersonCam.SetActive(true);
-            ThirdPersonCanvas.SetActive(true);
-            AimCam.SetActive(false);
-            AimCanvas.SetActive(false);
+            SetAnimatorState(idle: true, idleAim: false, rifleWalk: false, walk: false);
+            SwitchToThirdPersonCamera();
         }
 
-        if (isAiming){
-            AlignPlayerWithAim();
-        }
+        AlignPlayerWithCamera();
     }
 
-    // Method to align the player with the aim camera's direction
-    private void AlignPlayerWithAim(){
-        Vector3 aimDirection = AimCam.transform.forward;
-        aimDirection.y = 0; // Keep the player aligned horizontally
-        if (aimDirection != Vector3.zero) {
-            playerTransform.rotation = Quaternion.LookRotation(aimDirection);
+    // Method to switch to the aim camera
+    private void SwitchToAimCamera(){
+        ThirdPersonCam.SetActive(false);
+        ThirdPersonCanvas.SetActive(false);
+        AimCam.SetActive(true);
+        AimCanvas.SetActive(true);
+    }
+
+    // Method to switch to the third-person camera
+    private void SwitchToThirdPersonCamera(){
+        ThirdPersonCam.SetActive(true);
+        ThirdPersonCanvas.SetActive(true);
+        AimCam.SetActive(false);
+        AimCanvas.SetActive(false);
+    }
+
+    // Method to set the animator state
+    private void SetAnimatorState(bool idle, bool idleAim, bool rifleWalk, bool walk){
+        animator.SetBool("Idle", idle);
+        animator.SetBool("IdleAim", idleAim);
+        animator.SetBool("RifleWalk", rifleWalk);
+        animator.SetBool("Walk", walk);
+    }
+
+    // Method to align the player with the active camera's direction
+    private void AlignPlayerWithCamera(){
+        Transform activeCamera = AimCam.activeSelf ? AimCam.transform : ThirdPersonCam.transform;
+        Vector3 cameraDirection = activeCamera.forward;
+        cameraDirection.y = 0; // Keep the player aligned horizontally
+        if (cameraDirection != Vector3.zero) {
+            playerTransform.rotation = Quaternion.LookRotation(cameraDirection);
         }
     }
 }
