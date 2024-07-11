@@ -71,7 +71,7 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("Walk",true);
             animator.SetBool("Running",false);
             animator.SetBool("RifleWalk",false);
-            animator.SetBool("IdleAim",false);//fasle
+            animator.SetBool("IdleAim",false);
 
             float targetAngle=Mathf.Atan2(direction.x,direction.z)*Mathf.Rad2Deg+playerCamera.eulerAngles.y;
             float angle=Mathf.SmoothDampAngle(transform.eulerAngles.y,targetAngle,ref turncalmVelocity,turnCalmTime);

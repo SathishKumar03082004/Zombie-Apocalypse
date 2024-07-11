@@ -37,6 +37,10 @@ public class Rifle : MonoBehaviour
     public AudioSource audioSource;
 
 
+    [Header("Rifile Light")]
+    public Light spotLight;
+
+
     private void Awake() {
         transform.SetParent(hand);
         rifleUI.SetActive(true);
@@ -74,7 +78,26 @@ public class Rifle : MonoBehaviour
             animator.SetBool("Idle",true);
             animator.SetBool("FireWalk",false);//True
         }
+
+
+
+
+        if(Input.GetKeyDown("z")){
+            ToggleSpotLight(true);
+        }
+
+        if(Input.GetKeyDown("x")){
+            ToggleSpotLight(false);
+        }
+
+
     }
+
+        public void ToggleSpotLight(bool state){
+            if (spotLight != null){
+                spotLight.enabled = state;
+            }
+        }
 
     private void Shoot(){
         if(mag==0){
